@@ -7,11 +7,10 @@ fun main() {
 }
 
 fun transaction(card: String = "VKpay", amountTransfers: Int = 0, amount: Int) {
-    var cost = amount
-    when (card) {
-        "MasterCard", "Maestro" -> cost = comissionForMastercardAndMaestro(amountTransfers, amount)
-        "VKpay" -> cost
-        "Visa", "Мир" -> cost = comissionForVisaAndMir(amount)
+    var cost = when (card) {
+        "MasterCard", "Maestro" -> comissionForMastercardAndMaestro(amountTransfers, amount)
+        "Visa", "Мир" -> comissionForVisaAndMir(amount)
+        else -> amount
     }
     println("Сумма перевода будет состовлять $cost коп. ( ${cost / 100} руб. )")
 }
